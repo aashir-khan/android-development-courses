@@ -1,1 +1,1 @@
-Just me working on varkious android development courses online
+Just me working on various android development courses online
