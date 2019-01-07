@@ -3,7 +3,6 @@ package com.humblecarrot.android.drwords.data;
 import com.humblecarrot.android.drwords.SingleResultActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

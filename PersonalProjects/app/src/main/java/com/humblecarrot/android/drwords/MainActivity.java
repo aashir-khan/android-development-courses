@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     public static WordsAdapter mAdapter;
     public static List<WordResult> resultsList;
     public static WordDetails wordDetails;
-//    public static WordAsyncTask task;
     public String userInput;
 
     @Override
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
                             ".", Toast.LENGTH_SHORT).show();
                 } else {
                     getLoaderManager().initLoader(0, null, MainActivity.this);
-
                 }
             }
         });
@@ -85,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
             getLoaderManager().destroyLoader(0);
 
             Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+            intent.putExtra("callingActivity", "MainActivity");
+            intent.putExtra("userInput", userInput);
             startActivity(intent);
         } else {
             Toast.makeText(MainActivity.this, "No results for that word, please try again" +
@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
                 activeNetwork.isConnectedOrConnecting();
         return connectedYes;
     }
+
+
 
 
 }

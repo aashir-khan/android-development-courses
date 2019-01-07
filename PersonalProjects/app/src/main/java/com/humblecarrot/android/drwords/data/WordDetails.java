@@ -12,8 +12,16 @@ public class WordDetails {
         this.results = new ArrayList<WordResult>();
     }
 
+    public WordDetails(List<WordResult> results) {
+        this.results = results;
+    }
+
     public List<WordResult> getResultsList() {
         return results;
+    }
+
+    public void setResults(List<WordResult> results) {
+        this.results = results;
     }
 
     public String getWord() {
