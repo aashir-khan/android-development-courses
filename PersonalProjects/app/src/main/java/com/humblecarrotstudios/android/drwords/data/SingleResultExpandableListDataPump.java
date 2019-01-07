@@ -1,6 +1,6 @@
-package com.humblecarrot.android.drwords.data;
+package com.humblecarrotstudios.android.drwords.data;
 
-import com.humblecarrot.android.drwords.SingleResultActivity;
+import com.humblecarrotstudios.android.drwords.SingleResultActivity;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,7 +12,7 @@ public class SingleResultExpandableListDataPump {
 
     public static Map<String, List<String>> getData(WordDetails wordDetails, int resultPosition) {
 
-        String inputWord = wordDetails.getWord();
+//        String inputWord = wordDetails.getWord();
         Map<String, List<String>> expandableListDetail = new LinkedHashMap<>();
 
         WordResult wordResult = wordDetails.getResultsList().get(resultPosition);
@@ -45,11 +45,11 @@ public class SingleResultExpandableListDataPump {
 
 
 
-        if (!inputWord.isEmpty()) {
-            List<String> wordList = new ArrayList<>();
-            wordList.add(inputWord);
-            expandableListDetail.put(SingleResultActivity.WordBeingSearchedText, wordList);
-        }
+//        if (!inputWord.isEmpty()) {
+//            List<String> wordList = new ArrayList<>();
+//            wordList.add(inputWord);
+//            expandableListDetail.put(SingleResultActivity.WordBeingSearchedText, wordList);
+//        }
 
         if (definition != null) {
             List<String> definitionList = new ArrayList<>();

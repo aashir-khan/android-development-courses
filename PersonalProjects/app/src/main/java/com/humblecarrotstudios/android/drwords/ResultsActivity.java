@@ -1,4 +1,4 @@
-package com.humblecarrot.android.drwords;
+package com.humblecarrotstudios.android.drwords;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.humblecarrot.android.drwords.data.WordDetails;
-import com.humblecarrot.android.drwords.data.WordResult;
+import com.humblecarrotstudios.android.drwords.data.WordDetails;
+import com.humblecarrotstudios.android.drwords.data.WordResult;
 
 
 import java.util.ArrayList;
@@ -22,7 +22,8 @@ public class ResultsActivity extends AppCompatActivity {
     private WordsAdapter mAdapter = null;
     public static List<WordResult> resultsList;
     public static WordDetails wordDetails;
-    private String userInput;
+    public static String userInput;
+    Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +34,11 @@ public class ResultsActivity extends AppCompatActivity {
         wordDetails = new WordDetails();
 
         userInput = getIntent().getStringExtra("userInput");
-        setTitle(userInput);
 
-        TextView resultsTitleView = (TextView) findViewById(R.id.results_title);
-        resultsTitleView.setText("RESULTS FOR \"" + userInput + "\"");
-
-        ListView resultsListView = (ListView) findViewById(R.id.results_list);
 
         String callingActivityName = getIntent().getStringExtra("callingActivity");
+        String userInputExtra = getIntent().getStringExtra("userInput");
+        userInput = userInputExtra;
         if (callingActivityName == null || callingActivityName.equals
                 ("SingleResultActivity")) {
             wordDetails = SingleResultActivity.wordDetails;
@@ -55,18 +53,28 @@ public class ResultsActivity extends AppCompatActivity {
 //            intent.putExtra("wantGetWordDetailDetails", false);
         }
 
+        setTitle("Word Information Results");
+
+        TextView resultsTitleView = (TextView) findViewById(R.id.results_title);
+        resultsTitleView.setText("RESULTS FOR \"" + userInput + "\"");
+
+        ListView resultsListView = (ListView) findViewById(R.id.results_list);
+
+
         resultsListView.setAdapter(mAdapter);
 
         resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(ResultsActivity.this, SingleResultActivity.class);
+                intent = new Intent(ResultsActivity.this, SingleResultActivity.class);
                 intent.putExtra("position", position);
                 intent.putExtra("userInput", userInput);
+//                startActivityForResult(intent, 1);
                 startActivity(intent);
             }
         });
-
     }
+
+
 }

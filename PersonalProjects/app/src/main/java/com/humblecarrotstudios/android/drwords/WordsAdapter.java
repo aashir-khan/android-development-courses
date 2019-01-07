@@ -1,6 +1,6 @@
-package com.humblecarrot.android.drwords;
+package com.humblecarrotstudios.android.drwords;
 
-import com.humblecarrot.android.drwords.data.WordResult;
+import com.humblecarrotstudios.android.drwords.data.WordResult;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.humblecarrot.android.drwords;
+package com.humblecarrotstudios.android.drwords;
 
 import android.app.LoaderManager;
 import android.content.Context;
@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.humblecarrot.android.drwords.data.SingleResultExpandableListDataPump;
-import com.humblecarrot.android.drwords.data.WordDetails;
-import com.humblecarrot.android.drwords.data.WordResult;
+import com.humblecarrotstudios.android.drwords.data.SingleResultExpandableListDataPump;
+import com.humblecarrotstudios.android.drwords.data.WordDetails;
+import com.humblecarrotstudios.android.drwords.data.WordResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class SingleResultActivity extends AppCompatActivity implements LoaderManager
         .LoaderCallbacks<String> {
 
-    final public static String WordBeingSearchedText = "Word Being Searched";
+//    final public static String WordBeingSearchedText = "Word Being Searched";
     final public static String DefinitionText = "Definition";
     final public static String PartOfSpeechText = "Part Of Speech";
     final public static String SynonymsText = "Synonyms";
@@ -201,5 +201,16 @@ public class SingleResultActivity extends AppCompatActivity implements LoaderMan
         expandableListGroupNames = new ArrayList<String>(expandableListChildDetails.keySet());
         expandableListAdapter = new SingleResultExpandableListAdapter(this, expandableListGroupNames, expandableListChildDetails);
         expandableListView.setAdapter(expandableListAdapter);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        Intent intent = new Intent(SingleResultActivity.this, ResultsActivity.class);
+        intent.putExtra("callingActivity", "SingleResultActivity");
+        intent.putExtra("userInput", userInput);
+//            startActivityForResult(intent, 0);
+        startActivity(intent);
+
+        return super.onSupportNavigateUp();
     }
 }

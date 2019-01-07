@@ -1,4 +1,4 @@
-package com.humblecarrot.android.drwords.data;
+package com.humblecarrotstudios.android.drwords.data;
 
 import java.util.List;
 

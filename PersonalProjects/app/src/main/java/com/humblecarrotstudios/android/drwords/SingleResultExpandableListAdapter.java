@@ -1,4 +1,4 @@
-package com.humblecarrot.android.drwords;
+package com.humblecarrotstudios.android.drwords;
 
 import android.content.Context;
 import android.graphics.Typeface;

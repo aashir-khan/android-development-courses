@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.humblecarrot.android.drwords">
+    package="com.humblecarrotstudios.android.drwords">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -19,13 +19,11 @@
         </activity>
         <activity
             android:name=".ResultsActivity"
-            android:label="Word Information"
-            android:parentActivityName=".MainActivity">
+            android:label="Word Information">
         </activity>
         <activity
             android:name=".SingleResultActivity"
-            android:label="Word Information Result"
-            android:parentActivityName=".ResultsActivity">
+            android:label="Word Information Result">
         </activity>
     </application>
 

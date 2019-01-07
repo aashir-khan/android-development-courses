@@ -1,9 +1,10 @@
-package com.humblecarrot.android.drwords;
+package com.humblecarrotstudios.android.drwords;
 
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +16,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.humblecarrot.android.drwords.data.WordDetails;
-import com.humblecarrot.android.drwords.data.WordResult;
+import com.humblecarrotstudios.android.drwords.data.WordDetails;
+import com.humblecarrotstudios.android.drwords.data.WordResult;
 
 
 import java.util.ArrayList;
@@ -26,10 +27,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         .LoaderCallbacks<String> {
 
     final static String BASE_URL = "https://wordsapiv1.p.mashape.com/words";
-    public static WordsAdapter mAdapter;
+    public static com.humblecarrotstudios.android.drwords.WordsAdapter mAdapter;
     public static List<WordResult> resultsList;
     public static WordDetails wordDetails;
     public static String userInput;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAdapter = new WordsAdapter(MainActivity.this, new ArrayList<WordResult>());
+        mAdapter = new com.humblecarrotstudios.android.drwords.WordsAdapter(MainActivity.this, new ArrayList<WordResult>());
 
         final EditText wordEditText = (EditText) findViewById(R.id.word_field);
         final Button resultsButton = (Button) findViewById(R.id.word_button);
+        resultsButton.setBackgroundColor(Color.parseColor("#64DD17"));
 
         resultsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     @Override
     public Loader<String> onCreateLoader(int id, Bundle args) {
 //        System.out.println("running onCreateLoader()...");
-        return new WordResultLoader(this, BASE_URL + "/" + userInput);
+        return new com.humblecarrotstudios.android.drwords.WordResultLoader(this, BASE_URL + "/" + userInput);
     }
 
     @Override
@@ -82,9 +85,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
             mAdapter.addAll(resultsList);
             getLoaderManager().destroyLoader(0);
 
-            Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+            intent = new Intent(MainActivity.this, com.humblecarrotstudios.android.drwords.ResultsActivity.class);
             intent.putExtra("callingActivity", "MainActivity");
             intent.putExtra("userInput", userInput);
+//            startActivityForResult(intent, 2);
             startActivity(intent);
         } else {
             Toast.makeText(MainActivity.this, "No results for that word, please try again" +
