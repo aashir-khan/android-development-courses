@@ -21,7 +21,6 @@ public class ResultsActivity extends AppCompatActivity {
 
     private WordsAdapter mAdapter = null;
     public static List<WordResult> resultsList;
-    private Intent intent;
     public static WordDetails wordDetails;
     private String userInput;
 
@@ -34,8 +33,10 @@ public class ResultsActivity extends AppCompatActivity {
         wordDetails = new WordDetails();
 
         userInput = getIntent().getStringExtra("userInput");
+        setTitle(userInput);
 
-        intent = new Intent(ResultsActivity.this, SingleResultActivity.class);
+        TextView resultsTitleView = (TextView) findViewById(R.id.results_title);
+        resultsTitleView.setText("RESULTS FOR \"" + userInput + "\"");
 
         ListView resultsListView = (ListView) findViewById(R.id.results_list);
 
@@ -60,6 +61,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent intent = new Intent(ResultsActivity.this, SingleResultActivity.class);
                 intent.putExtra("position", position);
                 intent.putExtra("userInput", userInput);
                 startActivity(intent);

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     public static WordsAdapter mAdapter;
     public static List<WordResult> resultsList;
     public static WordDetails wordDetails;
-    public String userInput;
+    public static String userInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

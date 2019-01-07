@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -64,7 +65,7 @@ public class SingleResultActivity extends AppCompatActivity implements LoaderMan
     final static String BASE_URL = "https://wordsapiv1.p.mashape.com/words";
     public static WordsAdapter mAdapter;
     public static List<WordResult> resultsList;
-    public String userInput;
+    public static String userInput;
     private int wordPosition;
 
     @Override
@@ -82,6 +83,9 @@ public class SingleResultActivity extends AppCompatActivity implements LoaderMan
         setTitle(userInput);
         wordDetails = ResultsActivity.wordDetails;
         resultsList = wordDetails.getResultsList();
+
+        TextView singleResultTitle = (TextView) findViewById(R.id.singleResultTitle);
+        singleResultTitle.setText("Single Result Information");
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
