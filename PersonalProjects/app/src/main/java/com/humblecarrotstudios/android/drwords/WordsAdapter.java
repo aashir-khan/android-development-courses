@@ -1,5 +1,6 @@
 package com.humblecarrotstudios.android.drwords;
 
+import com.humblecarrotstudios.android.drwords.data.WordDetails;
 import com.humblecarrotstudios.android.drwords.data.WordResult;
 
 import android.content.Context;
@@ -15,8 +16,11 @@ import java.util.List;
 
 public class WordsAdapter extends ArrayAdapter<WordResult> {
 
+    private List<WordResult> results;
+
     public WordsAdapter(Context context, List<WordResult> results) {
         super(context, 0, results);
+        this.results = results;
     }
 
     @NonNull
@@ -30,7 +34,7 @@ public class WordsAdapter extends ArrayAdapter<WordResult> {
         }
 
         TextView resultView = (TextView) listItemView.findViewById(R.id.result_view);
-        resultView.setText("Result #" + Integer.toString(position + 1));
+        resultView.setText(this.results.get(position).getDefinition());
         resultView.setGravity(Gravity.CENTER_VERTICAL);
 
         return listItemView;

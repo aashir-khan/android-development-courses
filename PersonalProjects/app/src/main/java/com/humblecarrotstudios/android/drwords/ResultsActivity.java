@@ -47,9 +47,9 @@ public class ResultsActivity extends AppCompatActivity {
 //            intent.putExtra("wantGetWordDetailDetails", true);
         } else if (callingActivityName.equals("MainActivity")) {
 
-            wordDetails = MainActivity.wordDetails;
+            wordDetails = MainActivity.gson.fromJson(MainActivity.myJsonResponse, WordDetails.class);
             resultsList = wordDetails.getResultsList();
-            mAdapter = MainActivity.mAdapter;
+            mAdapter = new WordsAdapter(ResultsActivity.this, resultsList);
 //            intent.putExtra("wantGetWordDetailDetails", false);
         }
 

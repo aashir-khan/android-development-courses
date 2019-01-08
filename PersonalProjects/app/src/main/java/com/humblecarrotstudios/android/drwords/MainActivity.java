@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     public static WordDetails wordDetails;
     public static String userInput;
     Intent intent;
+    public static Gson gson;
+    public static String myJsonResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mAdapter = new com.humblecarrotstudios.android.drwords.WordsAdapter(MainActivity.this, new ArrayList<WordResult>());
 
         final EditText wordEditText = (EditText) findViewById(R.id.word_field);
         final Button resultsButton = (Button) findViewById(R.id.word_button);
@@ -75,13 +75,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onLoadFinished(Loader<String> loader, String jsonResponse) {
 
-        Gson gson = new GsonBuilder().create();
+        myJsonResponse = jsonResponse;
+        gson = new GsonBuilder().create();
         wordDetails = gson.fromJson(jsonResponse, WordDetails.class);
 
         resultsList = wordDetails.getResultsList();
+        mAdapter = new WordsAdapter(MainActivity.this, resultsList);
 
-        mAdapter.clear();
         if (resultsList != null && !resultsList.isEmpty()) {
+            mAdapter.clear();
             mAdapter.addAll(resultsList);
             getLoaderManager().destroyLoader(0);
 
